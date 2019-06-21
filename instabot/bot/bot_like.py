@@ -1,5 +1,5 @@
 from tqdm import tqdm
-
+import random
 
 def like(self, media_id, check_media=True):
     if not self.reached_limit('likes'):
@@ -51,10 +51,12 @@ def like_comment(self, comment_id):
 
 def like_media_comments(self, media_id):
     broken_items = []
-    media_comments = self.get_media_comments(media_id)
+    media_comments = self.get_media_comments_all(media_id)
     self.logger.info('Found {} comments'.format(len(media_comments)))
     comment_ids = [item["pk"] for item in media_comments if not item.get('has_liked_comment') or not item["has_liked_comment"]]
 
+    if len(comment_ids) > 90:
+       comment_ids = random.sample(comment_ids, 90)
     if not comment_ids:
         self.logger.info("None comments received: comments not found or comments have been filtered.")
         return broken_items
