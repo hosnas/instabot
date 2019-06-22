@@ -32,7 +32,7 @@ def unfollow_users(self, user_ids):
     if len(filtered_user_ids) != len(user_ids):
         self.logger.info(
             "After filtration by whitelist {} users left.".format(len(filtered_user_ids)))
-    for user_id in tqdm(filtered_user_ids, desc='Processed users'):
+    for user_id in tqdm(reversed(filtered_user_ids), desc='Processed users'):
         if not self.unfollow(user_id):
             self.error_delay()
             i = filtered_user_ids.index(user_id)
