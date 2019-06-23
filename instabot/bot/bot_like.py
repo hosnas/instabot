@@ -55,8 +55,8 @@ def like_media_comments(self, media_id):
     self.logger.info('Found {} comments'.format(len(media_comments)))
     comment_ids = [item["pk"] for item in media_comments if not item.get('has_liked_comment') or not item["has_liked_comment"]]
 
-    if len(comment_ids) > 90:
-       comment_ids = random.sample(comment_ids, 90)
+    if len(comment_ids) > 60:
+       comment_ids = random.sample(comment_ids, 60)
     if not comment_ids:
         self.logger.info("None comments received: comments not found or comments have been filtered.")
         return broken_items
