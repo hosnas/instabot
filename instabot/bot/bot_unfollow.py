@@ -1,5 +1,5 @@
 from tqdm import tqdm
-
+import random
 
 def unfollow(self, user_id):
     user_id = self.convert_to_user_id(user_id)
@@ -29,6 +29,8 @@ def unfollow_users(self, user_ids):
     self.logger.info("Going to unfollow {} users.".format(len(user_ids)))
     user_ids = set(map(str, user_ids))
     filtered_user_ids = list(set(user_ids) - set(self.whitelist))
+    if len(filtered_user_ids) > 50:
+        filtered_user_ids = random.sample(filtered_user_ids, 50)
     if len(filtered_user_ids) != len(user_ids):
         self.logger.info(
             "After filtration by whitelist {} users left.".format(len(filtered_user_ids)))
