@@ -185,9 +185,8 @@ class API(object):
         except Exception as e:
             self.logger.warning(str(e))
             return False
-
+        self.last_response = response
         if response.status_code == 200:
-            self.last_response = response
             try:
                 self.last_json = json.loads(response.text)
                 return True
