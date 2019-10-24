@@ -9,14 +9,17 @@
         You can change file and add there your comments.
 """
 
-import sys
 import os
+import sys
 
-sys.path.append(os.path.join(sys.path[0], '../../'))
-from instabot import Bot
+sys.path.append(os.path.join(sys.path[0], "../../"))
+from instabot import Bot  # noqa: E402
 
 if len(sys.argv) < 3:
-    print("USAGE: Pass a path to the file with comments and a hashtag to comment")
+    print(
+        "USAGE: Pass a path to the file with comments "
+        "and a hashtag to comment"
+    )
     print("Example: %s comments_emoji.txt dog cat" % sys.argv[0])
     exit()
 
